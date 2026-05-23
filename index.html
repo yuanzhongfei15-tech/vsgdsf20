@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="专业在线简历制作工具，提供多款精美简历模板，支持在线编辑、实时预览、PDF导出功能，帮助您快速创建专业简历">
+    <meta name="keywords" content="简历制作,在线简历,简历模板,简历下载,PDF导出,简历设计,免费简历模板">
+    <meta name="author" content="简历制作工具">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="在线简历制作工具 - 专业简历模板">
+    <meta property="og:description" content="免费在线简历制作工具，多款精美模板，支持实时编辑和PDF导出">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <link rel="canonical" href="https://resume-builder.com">
+    <title>在线简历制作工具 - 免费简历模板下载</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">📄</span>
+                <span class="logo-text">简历工坊</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-tab="templates">模板选择</button>
+                <button class="nav-btn" data-tab="editor">编辑简历</button>
+                <button class="nav-btn" data-tab="preview">预览导出</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section id="templates-section" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h1>选择适合你的简历模板</h1>
+                    <p>精选多款专业简历模板，覆盖职场精英、应届生、兼职实习等场景</p>
+                </div>
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">全部模板</button>
+                    <button class="category-tab" data-category="professional">职场精英</button>
+                    <button class="category-tab" data-category="fresh">应届生</button>
+                    <button class="category-tab" data-category="parttime">兼职实习</button>
+                    <button class="category-tab" data-category="creative">创意设计</button>
+                </div>
+                <div class="template-grid" id="template-grid"></div>
+            </div>
+        </section>
+
+        <section id="editor-section" class="section">
+            <div class="container">
+                <div class="editor-layout">
+                    <aside class="editor-sidebar">
+                        <div class="sidebar-section">
+                            <h3>个人信息</h3>
+                            <div class="form-group">
+                                <label>姓名</label>
+                                <input type="text" id="input-name" placeholder="请输入姓名" data-field="name">
+                            </div>
+                            <div class="form-group">
+                                <label>职位/意向</label>
+                                <input type="text" id="input-title" placeholder="如：前端开发工程师" data-field="title">
+                            </div>
+                            <div class="form-group">
+                                <label>联系电话</label>
+                                <input type="tel" id="input-phone" placeholder="138-0000-0000" data-field="phone">
+                            </div>
+                            <div class="form-group">
+                                <label>电子邮箱</label>
+                                <input type="email" id="input-email" placeholder="example@email.com" data-field="email">
+                            </div>
+                            <div class="form-group">
+                                <label>个人网站</label>
+                                <input type="url" id="input-website" placeholder="https://yourwebsite.com" data-field="website">
+                            </div>
+                            <div class="form-group">
+                                <label>居住城市</label>
+                                <input type="text" id="input-location" placeholder="如：北京市朝阳区" data-field="location">
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>头像上传</h3>
+                            <div class="avatar-upload" id="avatar-upload">
+                                <div class="avatar-preview" id="avatar-preview">
+                                    <span class="avatar-placeholder">点击上传</span>
+                                </div>
+                                <input type="file" id="avatar-input" accept="image/*" style="display:none;">
+                                <button class="btn btn-secondary" id="upload-btn">选择图片</button>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>求职意向</h3>
+                            <div class="form-group">
+                                <label>职位类型</label>
+                                <input type="text" id="input-position" placeholder="如：全职" data-field="position">
+                            </div>
+                            <div class="form-group">
+                                <label>期望薪资</label>
+                                <input type="text" id="input-salary" placeholder="如：15K-25K" data-field="salary">
+                            </div>
+                            <div class="form-group">
+                                <label>工作地点</label>
+                                <input type="text" id="input-target-location" placeholder="如：北京" data-field="targetLocation">
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>教育经历</h3>
+                            <div id="education-list" class="entry-list"></div>
+                            <button class="btn btn-add" id="add-education">+ 添加教育经历</button>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>工作经历</h3>
+                            <div id="experience-list" class="entry-list"></div>
+                            <button class="btn btn-add" id="add-experience">+ 添加工作经历</button>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>项目经验</h3>
+                            <div id="projects-list" class="entry-list"></div>
+                            <button class="btn btn-add" id="add-project">+ 添加项目经验</button>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>技能特长</h3>
+                            <div id="skills-list" class="entry-list"></div>
+                            <button class="btn btn-add" id="add-skill">+ 添加技能</button>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>自我评价</h3>
+                            <textarea id="input-summary" placeholder="简短而有吸引力的自我介绍..." data-field="summary" rows="4"></textarea>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>模板样式</h3>
+                            <div class="style-options">
+                                <div class="style-option">
+                                    <label>主题颜色</label>
+                                    <div class="color-picker">
+                                        <input type="color" id="theme-color" value="#2563eb">
+                                    </div>
+                                </div>
+                                <div class="style-option">
+                                    <label>字体大小</label>
+                                    <select id="font-size">
+                                        <option value="small">小</option>
+                                        <option value="medium" selected>中</option>
+                                        <option value="large">大</option>
+                                    </select>
+                                </div>
+                                <div class="style-option">
+                                    <label>布局风格</label>
+                                    <select id="layout-style">
+                                        <option value="left-right">左右布局</option>
+                                        <option value="top-bottom">上下布局</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="editor-main">
+                        <div class="resume-preview" id="resume-preview">
+                            <div class="resume-paper" id="resume-paper"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="preview-section" class="section">
+            <div class="container">
+                <div class="preview-header">
+                    <h2>简历预览</h2>
+                    <div class="preview-actions">
+                        <button class="btn btn-primary" id="export-pdf">
+                            <span>📥</span> 导出PDF
+                        </button>
+                        <button class="btn btn-secondary" id="back-to-edit">
+                            <span>✏️</span> 返回编辑
+                        </button>
+                    </div>
+                </div>
+                <div class="preview-container">
+                    <div class="resume-preview-large" id="resume-preview-large"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 简历工坊 - 专业在线简历制作工具. 让求职更简单</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="entry-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">添加条目</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modal-cancel">取消</button>
+                <button class="btn btn-primary" id="modal-save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
